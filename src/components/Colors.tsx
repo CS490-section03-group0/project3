@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import {
-  Button, Typography,
-} from '@material-ui/core';
 
 type Color = {
   item_type: number,
@@ -32,20 +29,16 @@ function Colors(props: Props) {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
       { colors.length !== 0
         ? (
           <div>
-            <Typography variant="h6">Change Text Color</Typography>
-            <select
-              value={curColor}
-              onChange={HandleColorChange}
-            >
+            <select onChange={HandleColorChange}>
               {colors.map((color) => (
                 <option key={color.item_type} value={color.item_type}>{color.name}</option>
               ))}
             </select>
-            <Button color="primary" variant="contained" onClick={SubmitColor}>Confirm</Button>
+            <button type="button" value="Confirm" onClick={SubmitColor}>Confirm</button>
           </div>
         )
         : (

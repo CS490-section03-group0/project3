@@ -37,6 +37,104 @@ function App() {
   return (
     <Router>
       <AppHeader loggedIn={loggedIn} setUserId={setUserId} />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Pathway+Gothic+One&display=swap" rel="stylesheet" />
+      <Switch>
+        {/* Private routes that do require login */}
+        <Route path="/profile/:userId?" defaultParams={{ userId: '' }}>
+          <AuthRequired loggedIn={loggedIn}>
+            <Container>
+              <Box>
+                <Profileview />
+              </Box>
+            </Container>
+          </AuthRequired>
+        </Route>
+        <Route path="/coinflip">
+          <AuthRequired loggedIn={loggedIn}>
+            <Coinflip />
+          </AuthRequired>
+        </Route>
+        <Route path="/dice">
+          <AuthRequired loggedIn={loggedIn}>
+            <Dice />
+          </AuthRequired>
+        </Route>
+        <Route path="/skiball">
+          <AuthRequired loggedIn={loggedIn}>
+            <Skiball />
+          </AuthRequired>
+        </Route>
+        <Route path="/blackjack">
+          <AuthRequired loggedIn={loggedIn}>
+            <Blackjack />
+          </AuthRequired>
+        </Route>
+        <Route path="/store">
+          <AuthRequired loggedIn={loggedIn}>
+            <Container>
+              <Box>
+                <Store />
+              </Box>
+            </Container>
+          </AuthRequired>
+        </Route>
+        <Route path="/purchase">
+          <AuthRequired loggedIn={loggedIn}>
+            <Container>
+              <Box>
+                <TicketPurchase />
+              </Box>
+            </Container>
+          </AuthRequired>
+        </Route>
+        <Route path="/settings">
+          <AuthRequired loggedIn={loggedIn}>
+            <Container>
+              <Box>
+                <Settings />
+              </Box>
+            </Container>
+          </AuthRequired>
+        </Route>
+
+        {/* Public routes that don't require login */}
+        <Route path="/leaderboard">
+          <Container>
+            <Box>
+              <Leaderboard />
+            </Box>
+          </Container>
+        </Route>
+        <Route path="/login">
+          <Container>
+            <Box>
+              <Login setUserId={setUserId} />
+            </Box>
+          </Container>
+        </Route>
+        <Route path="/signup">
+          <Container>
+            <Box>
+              <Signup setLoggedIn={setUserId} />
+            </Box>
+          </Container>
+        </Route>
+        <Route path="/newuser">
+          <Container>
+            <Box>
+              <NewUser setUserId={setUserId} />
+            </Box>
+          </Container>
+        </Route>
+        <Route path="/">
+          <Container>
+            <Box>
+              <Home />
+            </Box>
+          </Container>
+        </Route>
+      </Switch>
       <Container>
         <Box>
           {messages.map((error) => (
@@ -52,67 +150,6 @@ function App() {
               {error.message}
             </Alert>
           ))}
-          <Switch>
-            {/* Private routes that do require login */}
-            <Route path="/profile/:userId?" defaultParams={{ userId: '' }}>
-              <AuthRequired loggedIn={loggedIn}>
-                <Profileview />
-              </AuthRequired>
-            </Route>
-            <Route path="/coinflip">
-              <AuthRequired loggedIn={loggedIn}>
-                <Coinflip />
-              </AuthRequired>
-            </Route>
-            <Route path="/dice">
-              <AuthRequired loggedIn={loggedIn}>
-                <Dice />
-              </AuthRequired>
-            </Route>
-            <Route path="/skiball">
-              <AuthRequired loggedIn={loggedIn}>
-                <Skiball />
-              </AuthRequired>
-            </Route>
-            <Route path="/blackjack">
-              <AuthRequired loggedIn={loggedIn}>
-                <Blackjack />
-              </AuthRequired>
-            </Route>
-            <Route path="/store">
-              <AuthRequired loggedIn={loggedIn}>
-                <Store />
-              </AuthRequired>
-            </Route>
-            <Route path="/purchase">
-              <AuthRequired loggedIn={loggedIn}>
-                <TicketPurchase />
-              </AuthRequired>
-            </Route>
-            <Route path="/settings">
-              <AuthRequired loggedIn={loggedIn}>
-                <Settings />
-              </AuthRequired>
-            </Route>
-
-            {/* Public routes that don't require login */}
-            <Route path="/leaderboard">
-              <Leaderboard />
-            </Route>
-            <Route path="/login">
-              <Login setUserId={setUserId} />
-            </Route>
-            <Route path="/signup">
-              <Signup setLoggedIn={setUserId} />
-            </Route>
-            <Route path="/newuser">
-              <NewUser setUserId={setUserId} />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-
-          </Switch>
         </Box>
       </Container>
     </Router>
