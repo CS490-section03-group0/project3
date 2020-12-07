@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import './ProfileImage.css';
 import {
   Button, Typography, TextField,
 } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { MessageActions, ADD_MESSAGE } from '../actions/messageActions';
 
 interface Props {
   valid: boolean,
@@ -11,8 +13,9 @@ interface Props {
 function ProfileImage(props: Props) {
   const { valid } = props;
   const [imageURL, setImageURL] = useState('');
-  const [message, setMessage] = useState('');
+  const messagesDispatch = useDispatch<Dispatch<MessageActions>>();
   const [imageMessage, setImageMessage] = useState('');
+
   function HandleFileChange(event) {
     setImageURL(event.target.value);
   }
@@ -36,7 +39,13 @@ function ProfileImage(props: Props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setMessage(data.message);
+        messagesDispatch({
+          type: ADD_MESSAGE,
+          payload: {
+            message: `${data.message}`,
+            type: 'success',
+          },
+        });
       });
   }
 
@@ -62,7 +71,6 @@ function ProfileImage(props: Props) {
           : (
             null
           )}
-        <div>{message}</div>
       </div>
     );
   }

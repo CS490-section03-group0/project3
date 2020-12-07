@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { Dispatch, useState } from 'react';
 import {
   Button, Typography, TextField,
 } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { MessageActions, ADD_MESSAGE } from '../actions/messageActions';
 
 interface Props {
   valid: boolean,
@@ -10,7 +12,7 @@ interface Props {
 function Username(props: Props) {
   const { valid } = props;
   const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
+  const messagesDispatch = useDispatch<Dispatch<MessageActions>>();
 
   function HandleUsername(event) {
     setUsername(event.target.value);
@@ -28,7 +30,13 @@ function Username(props: Props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setMessage(data.message);
+        messagesDispatch({
+          type: ADD_MESSAGE,
+          payload: {
+            message: `${data.message}`,
+            type: 'success',
+          },
+        });
       });
   }
 
@@ -44,7 +52,6 @@ function Username(props: Props) {
           onChange={HandleUsername}
         />
         <Button color="primary" variant="contained" onClick={SubmitUsername}>Confirm</Button>
-        <div>{message}</div>
       </div>
     );
   }

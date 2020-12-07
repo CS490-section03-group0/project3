@@ -1,4 +1,3 @@
-from rfc3987 import parse
 from server.models import Item, User, Login, Store
 from server import db
 
@@ -10,6 +9,8 @@ def item_group_by_user_id(user_id, item_group):
     )
 
 def handle_text_color(user_id, item_type):
+    if item_type == '':
+        item_type=-1
     query = (
         db.session.query(Item)
         .filter(Item.user_id==user_id, Item.item_type==item_type)
@@ -51,21 +52,8 @@ def handle_username_change(user_id, username):
             .filter(Login.username==temp_username)
             .first()
         )
-        login_profile.username = username
+        if login_profile is not None:
+            login_profile.username = username
         db.session.commit()
         return True
     return False
-
-def handle_profile_image(user_id, image_url):
-    try:
-        parse(image_url, rule="IRI")
-    except ValueError:
-        return False
-    query = (
-        db.session.query(User)
-        .filter(User.id==user_id)
-        .first()
-    )
-    query.image_url = image_url
-    db.session.commit()
-    return True
