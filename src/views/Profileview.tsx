@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './Styles.css';
 import {
   Button, Paper, Typography, CircularProgress,
 } from '@material-ui/core';
@@ -37,7 +36,7 @@ function Profileview() {
   const classes = useStyles();
   return (
     <div className="Profile">
-      <Paper className="gradient-border-profile" style={{ background: 'black', color: 'white' }}>
+      <Paper className={classes.root}>
         <br />
         {loading ? <CircularProgress color="secondary" /> : null}
         <Typography variant="h5" className={classes.table}>

@@ -12,7 +12,6 @@ class User(db.Model):
     email = db.Column(db.String(320), unique=True)
     registration_datetime = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     is_public = db.Column(db.Boolean, default=False)
-    image_url = db.Column(db.String(2048))
 
 
 class LoginType(Enum):

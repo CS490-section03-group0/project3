@@ -1,4 +1,3 @@
-from rfc3987 import parse
 from server.models import Item, User, Login, Store
 from server import db
 
@@ -55,17 +54,3 @@ def handle_username_change(user_id, username):
         db.session.commit()
         return True
     return False
-
-def handle_profile_image(user_id, image_url):
-    try:
-        parse(image_url, rule="IRI")
-    except ValueError:
-        return False
-    query = (
-        db.session.query(User)
-        .filter(User.id==user_id)
-        .first()
-    )
-    query.image_url = image_url
-    db.session.commit()
-    return True
