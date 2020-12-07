@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './Styles.css';
+import './Blackjack.css';
 import {
-  Button, Paper, Typography, Input, Box,
+  Button, Typography, Input, Box,
 } from '@material-ui/core';
 import 'fontsource-roboto';
 import BlackjackGame from '../components/BlackjackGame';
 
 const rules = (
-  <Box>
+  <div className="rule-box">
     <Typography variant="h4">Rules:</Typography>
-    <Box style={{ textAlign: 'center' }}>
+    <Box>
       <Typography variant="h5">
         <p>1. Goal of blackjack is to beat the dealer&apos;s hand without going over 21</p>
         <p>2. Jack, Queen and King are worth 10 points</p>
@@ -21,7 +21,7 @@ const rules = (
         <p>12. Reward is double of your bet</p>
       </Typography>
     </Box>
-  </Box>
+  </div>
 );
 
 function Blackjack() {
@@ -70,21 +70,17 @@ function Blackjack() {
       });
   }, []);
   return (
-    <div className="blackjack-page">
-      <Paper
-        className="gradient-border-blackjack"
-        style={{
-          background: 'black', color: 'white', margin: 'auto', textAlign: 'center',
-        }}
-      >
+    <div className="blackjack">
+      <div>
         <br />
         {(() => {
           switch (gameState) {
             case 1: return (
               <div className="wagering-box">
-                <Typography variant="h4" style={{ marginBottom: '15px' }}>{message}</Typography>
+                <Typography variant="h3" style={{ marginBottom: '15px' }}>{message}</Typography>
                 {rules}
                 <Input type="text" defaultValue={pool} onChange={HandlePool} />
+                <br />
                 <Button variant="contained" type="button" onClick={PlayBlackJack} className="blackjack-play">Play</Button>
                 <Typography variant="h6">{errorMessage}</Typography>
               </div>
@@ -101,7 +97,7 @@ function Blackjack() {
           }
         })()}
         <br />
-      </Paper>
+      </div>
     </div>
   );
 }
