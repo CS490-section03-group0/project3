@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Styles.css';
+import './Skiball.css';
 import {
-  Button, Paper, Typography,
+  Button, Typography,
 } from '@material-ui/core';
 
 function Skiball() {
@@ -29,7 +29,7 @@ function Skiball() {
 
   return (
     <div className="Skiball">
-      <Paper className="gradient-border-skiball" style={{ background: 'black', color: 'white' }}>
+      <div>
         <Typography variant="h3">
           Skiball
         </Typography>
@@ -54,7 +54,7 @@ function Skiball() {
         <br />
         <p>{message}</p>
         <br />
-      </Paper>
+      </div>
     </div>
   );
 }
