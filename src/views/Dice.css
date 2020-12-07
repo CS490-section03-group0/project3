@@ -1,4 +1,4 @@
-.Skiball{
+.Dice{
     text-align: center;
     background: radial-gradient(#900, #600, #300, #100);
     height: 100vh;
@@ -7,31 +7,30 @@
     justify-content: center;
 }
 
-.Skiball h3{
+.Dice h3{
     font-family: 'Kaushan Script', cursive;
     color: #F0E68C;
 }
-.Skiball h5, .Skiball h6{
+.Dice h5, .Dice h6{
     font-family: 'Pathway Gothic One', sans-serif;
-    color: white;
+    line-height: 1.1;
 }
-.Skiball h6{
+.Dice h5 span{
+
+}
+
+.Dice h6{
     color: #aa9549;
     line-height: 1.0;
     margin-bottom: 10px;
 }
-.Skiball p{
+
+.Dice p{
     font-family: 'Pathway Gothic One', sans-serif;
     color: #ffc6c1;
 }
-.MuiButton-label{
-    font-family: 'Pathway Gothic One', sans-serif!important;
-    font-size: 15px!important;
-    color: #f0e68c!important;
+
+.dicegif{
+    height: 200px;
 }
 
-.Skiball button.MuiButtonBase-root{
-    background: #595530;
-    padding: 6px 30px;
-    border-radius: 30px;
-}

@@ -45,20 +45,17 @@ function Colors(props: Props) {
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div>
       { colors.length !== 0
         ? (
           <div>
             <Typography variant="h6">Change Text Color</Typography>
-            <select
-              value={curColor}
-              onChange={HandleColorChange}
-            >
+            <select onChange={HandleColorChange}>
               {colors.map((color) => (
                 <option key={color.item_type} value={color.item_type}>{color.name}</option>
               ))}
             </select>
-            <Button color="primary" variant="contained" onClick={SubmitColor}>Confirm</Button>
+            <Button color="primary" value="Confirm" onClick={SubmitColor}>Confirm</Button>
           </div>
         )
         : (
